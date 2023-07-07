@@ -3,13 +3,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450" 
-        FontSize="18" FontFamily="SimSun"
+        FontSize="12"
         x:Class="CSharpNotepad.MainWindow"
         Title="CSharpNotepad">
     
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="65*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="10*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*"/>
@@ -17,12 +21,22 @@
                 <RowDefinition Height="5*"/>
             </Grid.RowDefinitions>
             
-            <StackPanel Orientation="Horizontal">
-                
+            <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5" Orientation="Horizontal">
+                <ComboBox PlaceholderText="File"></ComboBox>
+                <ComboBox PlaceholderText="Edit"></ComboBox>
+                <ComboBox PlaceholderText="Format"></ComboBox>
+                <ComboBox PlaceholderText="View"></ComboBox>
+                <ComboBox PlaceholderText="Help"></ComboBox>
             </StackPanel>
             
-            <TextBox Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="NoWrap"
+            <TextBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="NoWrap"
                      AcceptsReturn="True" />
+            
+            <TextBlock Grid.Column="0" Grid.Row="2" Text=""/>
+            <TextBlock Grid.Column="1" Grid.Row="2" Text="Ln 0, Col 0"/>
+            <TextBlock Grid.Column="2" Grid.Row="2" Text="100%"/>
+            <TextBlock Grid.Column="3" Grid.Row="2" Text="Windows(CRLF)"/>
+            <TextBlock Grid.Column="4" Grid.Row="2" Text="UTF-8"/>
             
         </Grid>
 </Window>
