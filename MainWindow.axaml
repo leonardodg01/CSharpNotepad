@@ -21,13 +21,18 @@
                 <RowDefinition Height="5*"/>
             </Grid.RowDefinitions>
             
-            <StackPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5" Orientation="Horizontal">
-                <ComboBox PlaceholderText="File"></ComboBox>
-                <ComboBox PlaceholderText="Edit"></ComboBox>
-                <ComboBox PlaceholderText="Format"></ComboBox>
-                <ComboBox PlaceholderText="View"></ComboBox>
-                <ComboBox PlaceholderText="Help"></ComboBox>
-            </StackPanel>
+            <DockPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5">
+                <Menu>
+                    <MenuItem Header="_File">
+                        <MenuItem Header="Open..."></MenuItem>
+                        <MenuItem Header="Save As..."></MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="Edit"></MenuItem>
+                    <MenuItem Header="Format"></MenuItem>
+                    <MenuItem Header="View"></MenuItem>
+                    <MenuItem Header="Help"></MenuItem>
+                </Menu>
+            </DockPanel>
             
             <TextBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="NoWrap"
                      AcceptsReturn="True" />
