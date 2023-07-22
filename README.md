@@ -1,2 +1,2 @@
 # CSharpNotepad
-Notepad recreated in C# using Avalonia UI
+Notepad recreated in C# using WPF
