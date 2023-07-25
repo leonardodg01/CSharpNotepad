@@ -24,8 +24,9 @@
             <Menu>
                 <MenuItem Header="_File">
                     <MenuItem Header="Open..."
-                    />
-                    <MenuItem Header="Save As..."></MenuItem>
+                              Click = "OpenButton_Click"/>
+                    <MenuItem Header="Save As..."
+                              Click = "SaveAsButton_click"/>
                 </MenuItem>
                 <MenuItem Header="Edit"></MenuItem>
                 <MenuItem Header="Format"></MenuItem>
@@ -34,8 +35,8 @@
             </Menu>
         </DockPanel>
             
-        <TextBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="NoWrap"
-                 AcceptsReturn="True" />
+        <TextBox Name="TextMain" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                 TextWrapping="NoWrap" AcceptsReturn="True" />
             
         <TextBlock Grid.Column="0" Grid.Row="2" Text=""/>
         <TextBlock Grid.Column="1" Grid.Row="2" Text="Ln 0, Col 0"/>
