@@ -23,10 +23,22 @@
         <DockPanel Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5">
             <Menu>
                 <MenuItem Header="_File">
+                    <MenuItem Header="New"
+                              Click = "SaveAsButton_click"/>
+                    <MenuItem Header="New Window"
+                              Click = "NewWindowButton_click"/>
                     <MenuItem Header="Open..."
                               Click = "OpenButton_Click"/>
                     <MenuItem Header="Save As..."
                               Click = "SaveAsButton_click"/>
+                    <MenuItem Header="Save"
+                              Click = "SaveButton_click"/>
+                    <MenuItem Header="Page Setup..."
+                              Click = "SaveAsButton_click"/>
+                    <MenuItem Header="Print..."
+                              Click = "SaveAsButton_click"/>
+                    <MenuItem Header="Exit"
+                              Click = "ExitButton_click"/>
                 </MenuItem>
                 <MenuItem Header="Edit"></MenuItem>
                 <MenuItem Header="Format"></MenuItem>
