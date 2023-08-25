@@ -9,6 +9,7 @@ namespace CSharpNotepad
     {
         public App()
         {
+            //Change button text for Message Box that asks if user wants to save
             MessageBoxManager.OK = "Save";
             MessageBoxManager.No = "Don't Save";
             MessageBoxManager.Register();

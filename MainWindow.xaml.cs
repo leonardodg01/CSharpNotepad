@@ -12,13 +12,14 @@ namespace CSharpNotepad
     /// </summary>
     public partial class MainWindow
     {
+        private string _currentFile; //Path to file that is currently opened
+        private string _savedText; //Contains text of loaded file
         
         public MainWindow()
         {
+            _savedText = ""; //This is the default value of the textbox
             InitializeComponent();
         }
-
-        private string _currentFile; //Path to file that is currently opened
 
         //Functionality for Open menu button
         private void OpenButton_Click(object sender, RoutedEventArgs e)
@@ -27,23 +28,42 @@ namespace CSharpNotepad
             //Set filter so user only sees txt files unless otherwise specified
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Text Documents (*.txt)|*.txt|All files (*.*)|*.*";
+            
+            //Open message box asking if user wants to save if they haven't
+            if (CheckIfSaved(_savedText, TextMain.Text) == false)
+            {
+                switch (SaveWarning())
+                {
+                    case MessageBoxResult.Yes:
+                        FileSave(_currentFile, TextMain.Text);
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                    case MessageBoxResult.Cancel:
+                        return;
+                }
+            }
             if (openFileDialog.ShowDialog() == true)
             {
                 _currentFile = openFileDialog.FileName;
                 TextMain.Text = File.ReadAllText(_currentFile);
+                _savedText = TextMain.Text;
             }
         }
 
         //Functionality for Save As menu button
         private void SaveAsButton_click(object sender, RoutedEventArgs e)
         {
-            //Write all text to created file when user clicks SAVE
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Text Documents (*.txt)|*.txt|All files (*.*)|*.*";
-            if (saveFileDialog.ShowDialog() == true)
+            //Run FileSaveAs and write to created file
+            string outputString = FileSaveAs(TextMain.Text);
+            if (outputString != "")
             {
-                _currentFile = saveFileDialog.FileName;
-                File.WriteAllText(_currentFile, TextMain.Text);
+                _currentFile = outputString;
+                _savedText = TextMain.Text;
+            }
+            else
+            {
+                return;
             }
         }
 
@@ -58,12 +78,26 @@ namespace CSharpNotepad
         //Need to implement function that asks user to save before exiting
         private void ExitButton_click(object sender, RoutedEventArgs e) 
         {
+            if (CheckIfSaved(_savedText, TextMain.Text) == false)
+            {
+                switch (SaveWarning())
+                {
+                    case MessageBoxResult.Yes:
+                        FileSave(_currentFile, TextMain.Text);
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                    case MessageBoxResult.Cancel:
+                        return;
+                }
+            }
             this.Close();
         }
         
         private void SaveButton_click(object sender, RoutedEventArgs e)
         {
-            FileSave(_currentFile, TextMain.Text);
+            _currentFile = FileSave(_currentFile, TextMain.Text);
+            _savedText = TextMain.Text;
         }
     }
 }
