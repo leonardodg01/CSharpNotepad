@@ -21,6 +21,35 @@ namespace CSharpNotepad
             InitializeComponent();
         }
 
+        private void NewWindowButton_click(object sender, RoutedEventArgs e)
+        {
+            Process newWindow = new Process();
+            newWindow.StartInfo.FileName = System.Reflection.Assembly.GetEntryAssembly().Location;
+            newWindow.Start();
+        }
+        
+        private void NewButton_click(object sender, RoutedEventArgs e)
+        {
+            //Open message box asking if user wants to save if they haven't
+            if (CheckIfSaved(_savedText, TextMain.Text) == false)
+            {
+                switch (SaveWarning())
+                {
+                    case MessageBoxResult.Yes:
+                        FileSave(_currentFile, TextMain.Text);
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                    case MessageBoxResult.Cancel:
+                        return;
+                }
+            }
+
+            _currentFile = "";
+            _savedText = "";
+            TextMain.Text = "";
+        }
+        
         //Functionality for Open menu button
         private void OpenButton_Click(object sender, RoutedEventArgs e)
         {
@@ -50,6 +79,12 @@ namespace CSharpNotepad
                 _savedText = TextMain.Text;
             }
         }
+        
+        private void SaveButton_click(object sender, RoutedEventArgs e)
+        {
+            _currentFile = FileSave(_currentFile, TextMain.Text);
+            _savedText = TextMain.Text;
+        }
 
         //Functionality for Save As menu button
         private void SaveAsButton_click(object sender, RoutedEventArgs e)
@@ -67,13 +102,6 @@ namespace CSharpNotepad
             }
         }
 
-        private void NewWindowButton_click(object sender, RoutedEventArgs e)
-        {
-            Process newWindow = new Process();
-            newWindow.StartInfo.FileName = System.Reflection.Assembly.GetEntryAssembly().Location;
-            newWindow.Start();
-        }
-        
         //Exits the application
         //Need to implement function that asks user to save before exiting
         private void ExitButton_click(object sender, RoutedEventArgs e) 
@@ -92,12 +120,6 @@ namespace CSharpNotepad
                 }
             }
             this.Close();
-        }
-        
-        private void SaveButton_click(object sender, RoutedEventArgs e)
-        {
-            _currentFile = FileSave(_currentFile, TextMain.Text);
-            _savedText = TextMain.Text;
         }
     }
 }

@@ -24,7 +24,7 @@
             <Menu>
                 <MenuItem Header="_File">
                     <MenuItem Header="New"
-                              Click = "SaveAsButton_click"/>
+                              Click = "NewButton_click"/>
                     <MenuItem Header="New Window"
                               Click = "NewWindowButton_click"/>
                     <MenuItem Header="Open..."
