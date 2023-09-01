@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using System.IO;
-using System.Text;
 using System.Windows;
 using Microsoft.Win32;
 using static CSharpNotepad.FileFunctions;
@@ -20,7 +19,29 @@ namespace CSharpNotepad
             _savedText = ""; //This is the default value of the textbox
             InitializeComponent();
         }
+        
+        //Run when X is pressed to close window
+        private void OnClose(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (CheckIfSaved(_savedText, TextMain.Text) == false)
+            {
+                switch (SaveWarning())
+                {
+                    case MessageBoxResult.Yes:
+                        FileSave(_currentFile, TextMain.Text);
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                    case MessageBoxResult.Cancel:
+                        e.Cancel = true;
+                        return;
+                }
+            }
+        }
 
+        //
+        // ** FILE FUNCTIONS **
+        //
         private void NewWindowButton_click(object sender, RoutedEventArgs e)
         {
             Process newWindow = new Process();
@@ -103,22 +124,9 @@ namespace CSharpNotepad
         }
 
         //Exits the application
-        //Need to implement function that asks user to save before exiting
+        //Will automatically run OnClose() 
         private void ExitButton_click(object sender, RoutedEventArgs e) 
         {
-            if (CheckIfSaved(_savedText, TextMain.Text) == false)
-            {
-                switch (SaveWarning())
-                {
-                    case MessageBoxResult.Yes:
-                        FileSave(_currentFile, TextMain.Text);
-                        break;
-                    case MessageBoxResult.No:
-                        break;
-                    case MessageBoxResult.Cancel:
-                        return;
-                }
-            }
             this.Close();
         }
     }

@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CSharpNotepad"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525"
+        Closing="OnClose"    >
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="65*"/>
@@ -40,10 +42,54 @@
                     <MenuItem Header="Exit"
                               Click = "ExitButton_click"/>
                 </MenuItem>
-                <MenuItem Header="Edit"></MenuItem>
-                <MenuItem Header="Format"></MenuItem>
-                <MenuItem Header="View"></MenuItem>
-                <MenuItem Header="Help"></MenuItem>
+                
+                <MenuItem Header="Edit">
+                    <MenuItem Header="Undo"
+                              Click = "SaveAsButton_click"/>
+                    <MenuItem Header="Cut"
+                              Click = "SaveAsButton_click"/>
+                    <MenuItem Header="Copy"
+                              Click = "SaveAsButton_click"/>
+                    <MenuItem Header="Paste"
+                              Click = "SaveAsButton_click"/>
+                    <MenuItem Header="Delete"
+                              Click = "SaveAsButton_click"/>
+                    <MenuItem Header="Search with Bing..."
+                              Click = "SaveAsButton_click"/>
+                    <MenuItem Header="Find..."
+                              Click = "SaveAsButton_click"/>
+                    <MenuItem Header="Find Next"
+                              Click = "SaveAsButton_click"/>
+                    <MenuItem Header="Find Previous"
+                              Click = "SaveAsButton_click"/>
+                    <MenuItem Header="Replace..."
+                              Click = "SaveAsButton_click"/>
+                    <MenuItem Header="Go To..."
+                              Click = "SaveAsButton_click"/>
+                    <MenuItem Header="Select All"
+                              Click = "SaveAsButton_click"/>
+                    <MenuItem Header="Time/Date"
+                              Click = "SaveAsButton_click"/>
+                </MenuItem>
+                
+                <MenuItem Header="Format">
+                    <MenuItem Header="Word Wrap"
+                              Click = "SaveAsButton_click"/>
+                    <MenuItem Header="Font"
+                              Click = "SaveAsButton_click"/>
+                </MenuItem>
+                    
+                <MenuItem Header="View">
+                    <MenuItem Header="Zoom"
+                              Click = "SaveAsButton_click"/>
+                    <MenuItem Header="Status Bar"
+                              Click = "SaveAsButton_click"/>
+                </MenuItem>
+                    
+                <MenuItem Header="Help">
+                    <MenuItem Header="View Help"
+                              Click = "SaveAsButton_click"/>
+                </MenuItem>
             </Menu>
         </DockPanel>
             
